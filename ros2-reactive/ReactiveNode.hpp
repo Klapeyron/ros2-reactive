@@ -10,6 +10,8 @@
 #include <memory>
 #include <string>
 
+namespace ros2_reactive
+{
 class ReactiveNode : public rclcpp::Node
 {
  public:
@@ -37,5 +39,6 @@ class ReactiveNode : public rclcpp::Node
         });
   }
 };
+}  // namespace ros2_reactive
 
 #endif  // REACTIVENODE_HPP
