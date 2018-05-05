@@ -14,7 +14,8 @@ namespace ros2_reactive
 {
 
 /**
- * Wrapper for ROS2 node, which allows for creating reactive observables.
+ * Wrapper for ROS2 node, which extends classic ROS2 node with functionality responsible for
+ * creating reactive observables.
  * More information about reactive interface can be found in {@link ReactiveX.RxCpp}.
  * @see [ReactiveX.RxCpp](https://github.com/ReactiveX/RxCpp)
  */
@@ -29,6 +30,13 @@ class ReactiveNode : public rclcpp::Node
 
   /**
    * Creates reactive observable from given topic.
+   *
+   * Function creates standard ROS2 subscription in given topic
+   * and wrapps it in RxCpp observable. Created observable can be used with
+   * all reactive operators available in rxcpp library to operate on received
+   * from ROS2 data. Created observable is inactive, as long as subscribe function
+   * will be called on it. It means, that creation is not equivalent with performing
+   * subscription.
    *
    * @tparam MessageType Type of ROS2 message in given topic.
    * @tparam TopicType Representation of ROS2 topic
