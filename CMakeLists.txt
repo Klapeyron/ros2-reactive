@@ -14,4 +14,4 @@ target_include_directories(ros2-reactive INTERFACE
 					 ${RCLCPP_INCLUDE_DIRS}
 					 ${RXCPP_INCLUDE_DIRS})
 
-install(DIRECTORY ros2-reactive DESTINATION ${CMAKE_INSTALL_PREFIX}/include/)
+install(DIRECTORY ros2-reactive DESTINATION ${RCLCPP_INCLUDE_DIRS})
