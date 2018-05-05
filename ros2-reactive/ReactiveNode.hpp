@@ -15,8 +15,8 @@ class ReactiveNode : public rclcpp::Node
  public:
   using rclcpp::Node::Node;
 
-  template <typename MessageType, typename... Args>
-  rxcpp::observable<MessageType> create_observable(std::string const& topic,
+  template <typename MessageType, typename TopicType, typename... Args>
+  rxcpp::observable<MessageType> create_observable(TopicType&& topic,
                                                    Args&&... args)
   {
     return rxcpp::observable<>::create<MessageType>(
@@ -28,7 +28,7 @@ class ReactiveNode : public rclcpp::Node
           const_cast<typename rclcpp::Subscription<MessageType>::SharedPtr&>(
               subscription) =
               rclcpp::Node::create_subscription<MessageType>(
-                  topic,
+                  std::forward<TopicType>(topic),
                   [subject](typename MessageType::UniquePtr msg) {
                     subject.get_subscriber().on_next(*msg);
                   },
