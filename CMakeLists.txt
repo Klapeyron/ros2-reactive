@@ -4,7 +4,7 @@ project(ros2-reactive)
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/modules)
 
-find_package(rclcpp REQUIRED)
+find_package(rclcpp)
 find_package(rxcpp REQUIRED)
 
 add_library(ros2-reactive INTERFACE)
